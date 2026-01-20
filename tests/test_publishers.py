@@ -5,8 +5,8 @@ import pytest
 from pathlib import Path
 from unittest.mock import Mock, patch, call, mock_open
 
-from teamverse.models.content import BlogPost, Audience
-from teamverse.publishers.github import (
+from policyengine_content.models.content import BlogPost, Audience
+from policyengine_content.publishers.github import (
     create_blog_post_pr,
     _run_git,
     _get_today,
@@ -85,13 +85,13 @@ class TestBranchNameGeneration:
     def test_simple_title(self, sample_blog_post, mock_repo):
         """Test branch name generation from simple title."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
 
             # We need to mock _get_today to have consistent dates
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
@@ -119,11 +119,11 @@ class TestBranchNameGeneration:
         )
 
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(post, repo_path=mock_repo)
@@ -149,11 +149,11 @@ class TestBranchNameGeneration:
         )
 
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(post, repo_path=mock_repo)
@@ -174,11 +174,11 @@ class TestBranchNameGeneration:
     def test_custom_branch_name(self, sample_blog_post, mock_repo):
         """Test using a custom branch name."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(
@@ -205,11 +205,11 @@ class TestMarkdownFileWriting:
     def test_markdown_file_created(self, sample_blog_post, mock_repo):
         """Test that markdown file is created with correct content."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
@@ -236,11 +236,11 @@ class TestMarkdownFileWriting:
         )
 
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(post, repo_path=mock_repo)
@@ -259,11 +259,11 @@ class TestPostsJsonUpdate:
     def test_posts_json_updated(self, sample_blog_post, mock_repo):
         """Test that posts.json is updated with new entry."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
@@ -289,11 +289,11 @@ class TestPostsJsonUpdate:
     def test_new_post_prepended(self, sample_blog_post, mock_repo):
         """Test that new post is prepended to posts list."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
@@ -313,11 +313,11 @@ class TestPostsJsonUpdate:
     ):
         """Test that custom image filename is used in posts.json."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(blog_post_with_image, repo_path=mock_repo)
@@ -341,11 +341,11 @@ class TestImageCopying:
     ):
         """Test that image is copied to the images directory."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(
@@ -367,11 +367,11 @@ class TestImageCopying:
     ):
         """Test that custom image filename is used when specified."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(
@@ -389,11 +389,11 @@ class TestImageCopying:
     def test_no_image_when_not_provided(self, sample_blog_post, mock_repo):
         """Test that no image is copied when not provided."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
@@ -409,11 +409,11 @@ class TestImageCopying:
         fake_image = tmp_path / "nonexistent.png"
 
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(
@@ -436,11 +436,11 @@ class TestGitOperations:
     def test_git_checkout_main(self, sample_blog_post, mock_repo):
         """Test that git checkout main is called."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
@@ -454,11 +454,11 @@ class TestGitOperations:
     def test_git_pull(self, sample_blog_post, mock_repo):
         """Test that git pull is called."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
@@ -472,11 +472,11 @@ class TestGitOperations:
     def test_git_add_commit_push(self, sample_blog_post, mock_repo):
         """Test that git add, commit, and push are called."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(returncode=0, stdout="", stderr="")
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 try:
                     create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
@@ -517,10 +517,10 @@ class TestGitOperations:
             return Mock(returncode=0, stdout="https://github.com/pr/1", stderr="")
 
         with patch(
-            "teamverse.publishers.github.subprocess.run", side_effect=track_calls
+            "policyengine_content.publishers.github.subprocess.run", side_effect=track_calls
         ):
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
 
@@ -542,7 +542,7 @@ class TestGitOperations:
 class TestRunGit:
     def test_successful_git_command(self, tmp_path):
         """Test successful git command execution."""
-        with patch("teamverse.publishers.github.subprocess.run") as mock_run:
+        with patch("policyengine_content.publishers.github.subprocess.run") as mock_run:
             mock_run.return_value = Mock(returncode=0, stdout="", stderr="")
 
             _run_git(tmp_path, ["status"])
@@ -556,7 +556,7 @@ class TestRunGit:
 
     def test_failed_git_command_raises(self, tmp_path):
         """Test that failed git command raises RuntimeError."""
-        with patch("teamverse.publishers.github.subprocess.run") as mock_run:
+        with patch("policyengine_content.publishers.github.subprocess.run") as mock_run:
             mock_run.return_value = Mock(
                 returncode=1, stdout="", stderr="fatal: not a git repository"
             )
@@ -574,13 +574,13 @@ class TestPRCreation:
     def test_pr_created_with_correct_args(self, sample_blog_post, mock_repo):
         """Test that PR is created with correct arguments."""
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(
                 returncode=0, stdout="https://github.com/pr/1", stderr=""
             )
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 result = create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
 
@@ -612,10 +612,10 @@ class TestPRCreation:
             return Mock(returncode=0, stdout="", stderr="")
 
         with patch(
-            "teamverse.publishers.github.subprocess.run", side_effect=mock_run
+            "policyengine_content.publishers.github.subprocess.run", side_effect=mock_run
         ):
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 with pytest.raises(RuntimeError) as exc_info:
                     create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
@@ -627,13 +627,13 @@ class TestPRCreation:
         expected_url = "https://github.com/PolicyEngine/policyengine-app-v2/pull/123"
 
         with patch(
-            "teamverse.publishers.github.subprocess.run"
+            "policyengine_content.publishers.github.subprocess.run"
         ) as mock_subprocess:
             mock_subprocess.return_value = Mock(
                 returncode=0, stdout=f"{expected_url}\n", stderr=""
             )
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 result = create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
 
@@ -664,7 +664,7 @@ class TestErrorHandling:
             return Mock(returncode=0, stdout="", stderr="")
 
         with patch(
-            "teamverse.publishers.github.subprocess.run", side_effect=mock_run
+            "policyengine_content.publishers.github.subprocess.run", side_effect=mock_run
         ):
             with pytest.raises(RuntimeError) as exc_info:
                 create_blog_post_pr(sample_blog_post, repo_path=mock_repo)
@@ -684,10 +684,10 @@ class TestErrorHandling:
             return Mock(returncode=0, stdout="", stderr="")
 
         with patch(
-            "teamverse.publishers.github.subprocess.run", side_effect=mock_run
+            "policyengine_content.publishers.github.subprocess.run", side_effect=mock_run
         ):
             with patch(
-                "teamverse.publishers.github._get_today", return_value="2025-01-20"
+                "policyengine_content.publishers.github._get_today", return_value="2025-01-20"
             ):
                 with pytest.raises(RuntimeError) as exc_info:
                     create_blog_post_pr(sample_blog_post, repo_path=mock_repo)

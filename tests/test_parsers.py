@@ -4,9 +4,9 @@ import pytest
 from unittest.mock import patch, MagicMock, AsyncMock
 import httpx
 
-from teamverse.parsers.google_docs import GoogleDocsParser, parse_google_doc
-from teamverse.parsers.web import WebParser, parse_url
-from teamverse.models.content import Audience
+from policyengine_content.parsers.google_docs import GoogleDocsParser, parse_google_doc
+from policyengine_content.parsers.web import WebParser, parse_url
+from policyengine_content.models.content import Audience
 
 
 class TestGoogleDocsParser:
@@ -40,7 +40,7 @@ class TestGoogleDocsParser:
 
     def test_fetches_document_content(self):
         """Test fetching document content via API."""
-        import teamverse.parsers.google_docs as gdocs_module
+        import policyengine_content.parsers.google_docs as gdocs_module
 
         mock_build = MagicMock()
         mock_service = MagicMock()
@@ -73,7 +73,7 @@ class TestGoogleDocsParser:
 
     def test_parse_google_doc_function(self):
         """Test the convenience function for parsing Google Docs."""
-        import teamverse.parsers.google_docs as gdocs_module
+        import policyengine_content.parsers.google_docs as gdocs_module
 
         mock_build = MagicMock()
         mock_service = MagicMock()
@@ -127,7 +127,7 @@ class TestWebParser:
         mock_response.status_code = 200
         mock_response.raise_for_status = MagicMock()
 
-        with patch("teamverse.parsers.web.httpx.AsyncClient") as mock_client:
+        with patch("policyengine_content.parsers.web.httpx.AsyncClient") as mock_client:
             mock_instance = AsyncMock()
             mock_instance.get = AsyncMock(return_value=mock_response)
             mock_client.return_value.__aenter__.return_value = mock_instance
@@ -212,7 +212,7 @@ class TestParseUrl:
         mock_response.status_code = 200
         mock_response.raise_for_status = MagicMock()
 
-        with patch("teamverse.parsers.web.httpx.AsyncClient") as mock_client:
+        with patch("policyengine_content.parsers.web.httpx.AsyncClient") as mock_client:
             mock_instance = AsyncMock()
             mock_instance.get = AsyncMock(return_value=mock_response)
             mock_client.return_value.__aenter__.return_value = mock_instance
@@ -230,7 +230,7 @@ class TestAudienceDetection:
         """Test detecting UK-specific content."""
         content = "The Chancellor announced changes to National Insurance."
 
-        from teamverse.parsers.utils import detect_audience
+        from policyengine_content.parsers.utils import detect_audience
 
         audience = detect_audience(content)
         assert audience == Audience.UK
@@ -239,7 +239,7 @@ class TestAudienceDetection:
         """Test detecting US-specific content."""
         content = "The IRS released new guidance on the Earned Income Tax Credit."
 
-        from teamverse.parsers.utils import detect_audience
+        from policyengine_content.parsers.utils import detect_audience
 
         audience = detect_audience(content)
         assert audience == Audience.US
@@ -248,7 +248,7 @@ class TestAudienceDetection:
         """Test that generic content defaults to global audience."""
         content = "PolicyEngine released a new feature for policy analysis."
 
-        from teamverse.parsers.utils import detect_audience
+        from policyengine_content.parsers.utils import detect_audience
 
         audience = detect_audience(content)
         assert audience == Audience.GLOBAL
@@ -263,7 +263,7 @@ class TestContentExtraction:
         "This is a great tool for policy analysis," said John Doe, CEO of Example Corp.
         '''
 
-        from teamverse.parsers.utils import extract_quotes
+        from policyengine_content.parsers.utils import extract_quotes
 
         quotes = extract_quotes(text)
 
@@ -281,7 +281,7 @@ class TestContentExtraction:
         - Third important point
         """
 
-        from teamverse.parsers.utils import extract_key_points
+        from policyengine_content.parsers.utils import extract_key_points
 
         points = extract_key_points(text)
 

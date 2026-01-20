@@ -2,7 +2,7 @@
 
 import pytest
 
-from teamverse.models.content import (
+from policyengine_content.models.content import (
     Audience,
     QuoteBlock,
     SocialPost,

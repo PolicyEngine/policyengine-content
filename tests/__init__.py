@@ -1,1 +1,1 @@
-"""Tests for teamverse package."""
+"""Tests for policyengine_content package."""

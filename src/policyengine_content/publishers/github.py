@@ -5,7 +5,7 @@ import subprocess
 from pathlib import Path
 from typing import Optional
 
-from teamverse.models.content import BlogPost, Audience
+from policyengine_content.models.content import BlogPost, Audience
 
 
 def create_blog_post_pr(

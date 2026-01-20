@@ -4,7 +4,7 @@ from pathlib import Path
 
 from jinja2 import Environment, PackageLoader
 
-from teamverse.models.content import Newsletter
+from policyengine_content.models.content import Newsletter
 
 
 def render_newsletter(
@@ -20,7 +20,7 @@ def render_newsletter(
     Returns:
         Path to the generated HTML file
     """
-    env = Environment(loader=PackageLoader("teamverse", "templates"))
+    env = Environment(loader=PackageLoader("policyengine_content", "templates"))
     template = env.get_template("newsletter.html")
 
     html_content = template.render(

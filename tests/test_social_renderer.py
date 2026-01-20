@@ -6,8 +6,8 @@ from unittest.mock import patch, MagicMock
 from PIL import Image
 import subprocess
 
-from teamverse.models.content import SocialPost, Audience, QuoteBlock
-from teamverse.renderers.social import render_social_image, get_chrome_path
+from policyengine_content.models.content import SocialPost, Audience, QuoteBlock
+from policyengine_content.renderers.social import render_social_image, get_chrome_path
 
 
 class TestGetChromePath:
@@ -26,7 +26,7 @@ class TestGetChromePath:
         mock_run.return_value = MagicMock(returncode=1)
         # Force reimport to clear any cached path
         from importlib import reload
-        import teamverse.renderers.social as social_module
+        import policyengine_content.renderers.social as social_module
         reload(social_module)
         path = social_module.get_chrome_path()
         # Path might still be found via which command, so just verify it ran
@@ -130,7 +130,7 @@ class TestRenderSocialImage:
 
     def test_raises_without_chrome(self, sample_post, tmp_path):
         """Test that RuntimeError is raised when Chrome is not found."""
-        with patch("teamverse.renderers.social.get_chrome_path", return_value=None):
+        with patch("policyengine_content.renderers.social.get_chrome_path", return_value=None):
             output_path = tmp_path / "social.png"
 
             with pytest.raises(RuntimeError, match="Chrome not found"):

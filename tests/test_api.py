@@ -174,7 +174,7 @@ class TestParseSourceEndpoint:
 def client():
     """Create test client for the API."""
     from fastapi.testclient import TestClient
-    from teamverse.api import app
+    from policyengine_content.api import app
 
     return TestClient(app)
 
@@ -205,7 +205,7 @@ def mock_render_social_image(tmp_path):
     img = Image.new("RGB", (1200, 630), color=(26, 35, 50))
     img.save(output_path)
 
-    with patch("teamverse.api.render_social_image") as mock:
+    with patch("policyengine_content.api.render_social_image") as mock:
         mock.return_value = output_path
         yield mock
 
@@ -213,7 +213,7 @@ def mock_render_social_image(tmp_path):
 @pytest.fixture
 def mock_no_chrome():
     """Mock Chrome not being available."""
-    with patch("teamverse.api.render_social_image") as mock:
+    with patch("policyengine_content.api.render_social_image") as mock:
         mock.side_effect = RuntimeError("Chrome not found. Install Google Chrome to render images.")
         yield mock
 
@@ -227,7 +227,7 @@ def mock_web_parser():
         "markdown": "# Test Blog Post\n\nThis is the main content.",
         "url": "https://policyengine.org/blog/test-post",
     }
-    with patch("teamverse.api.parse_url", new_callable=AsyncMock) as mock:
+    with patch("policyengine_content.api.parse_url", new_callable=AsyncMock) as mock:
         mock.return_value = mock_result
         yield mock
 
@@ -235,6 +235,6 @@ def mock_web_parser():
 @pytest.fixture
 def mock_web_parser_error():
     """Mock the web parser for fetch error."""
-    with patch("teamverse.api.parse_url", new_callable=AsyncMock) as mock:
+    with patch("policyengine_content.api.parse_url", new_callable=AsyncMock) as mock:
         mock.side_effect = Exception("Failed to fetch URL: Connection error")
         yield mock

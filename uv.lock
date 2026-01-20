@@ -575,6 +575,52 @@ wheels = [
 ]
 
 [[package]]
+name = "policyengine-content"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "click" },
+    { name = "fastapi" },
+    { name = "httpx" },
+    { name = "jinja2" },
+    { name = "pillow" },
+    { name = "pydantic" },
+    { name = "uvicorn" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "beautifulsoup4" },
+    { name = "black" },
+    { name = "html2text" },
+    { name = "pixelmatch" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "pytest-cov" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "beautifulsoup4", marker = "extra == 'dev'", specifier = ">=4.12" },
+    { name = "black", marker = "extra == 'dev'", specifier = ">=23.0" },
+    { name = "click", specifier = ">=8.0" },
+    { name = "fastapi", specifier = ">=0.109" },
+    { name = "html2text", marker = "extra == 'dev'", specifier = ">=2020.1.16" },
+    { name = "httpx", specifier = ">=0.25" },
+    { name = "jinja2", specifier = ">=3.0" },
+    { name = "pillow", specifier = ">=10.0" },
+    { name = "pixelmatch", marker = "extra == 'dev'", specifier = ">=0.3" },
+    { name = "pydantic", specifier = ">=2.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23" },
+    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1" },
+    { name = "uvicorn", specifier = ">=0.27" },
+]
+provides-extras = ["dev"]
+
+[[package]]
 name = "pydantic"
 version = "2.12.5"
 source = { registry = "https://pypi.org/simple" }
@@ -848,52 +894,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/ba/b8/73a0e6a6e079a9d9c
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d9/52/1064f510b141bd54025f9b55105e26d1fa970b9be67ad766380a3c9b74b0/starlette-0.50.0-py3-none-any.whl", hash = "sha256:9e5391843ec9b6e472eed1365a78c8098cfceb7a74bfd4d6b1c0c0095efb3bca", size = 74033, upload-time = "2025-11-01T15:25:25.461Z" },
 ]
-
-[[package]]
-name = "teamverse"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "click" },
-    { name = "fastapi" },
-    { name = "httpx" },
-    { name = "jinja2" },
-    { name = "pillow" },
-    { name = "pydantic" },
-    { name = "uvicorn" },
-]
-
-[package.optional-dependencies]
-dev = [
-    { name = "beautifulsoup4" },
-    { name = "black" },
-    { name = "html2text" },
-    { name = "pixelmatch" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "pytest-cov" },
-    { name = "ruff" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "beautifulsoup4", marker = "extra == 'dev'", specifier = ">=4.12" },
-    { name = "black", marker = "extra == 'dev'", specifier = ">=23.0" },
-    { name = "click", specifier = ">=8.0" },
-    { name = "fastapi", specifier = ">=0.109" },
-    { name = "html2text", marker = "extra == 'dev'", specifier = ">=2020.1.16" },
-    { name = "httpx", specifier = ">=0.25" },
-    { name = "jinja2", specifier = ">=3.0" },
-    { name = "pillow", specifier = ">=10.0" },
-    { name = "pixelmatch", marker = "extra == 'dev'", specifier = ">=0.3" },
-    { name = "pydantic", specifier = ">=2.0" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0" },
-    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1" },
-    { name = "uvicorn", specifier = ">=0.27" },
-]
-provides-extras = ["dev"]
 
 [[package]]
 name = "tomli"

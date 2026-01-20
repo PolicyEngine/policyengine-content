@@ -7,8 +7,8 @@ from typing import Optional
 
 from jinja2 import Environment, PackageLoader
 
-from teamverse.models.content import SocialPost
-from teamverse.renderers.validators import validate_image
+from policyengine_content.models.content import SocialPost
+from policyengine_content.renderers.validators import validate_image
 
 
 def get_chrome_path() -> Optional[str]:
@@ -54,7 +54,7 @@ def render_social_image(
         raise RuntimeError("Chrome not found. Install Google Chrome to render images.")
 
     # Load and render template
-    env = Environment(loader=PackageLoader("teamverse", "templates"))
+    env = Environment(loader=PackageLoader("policyengine_content", "templates"))
     template = env.get_template("social-image.html")
 
     html_content = template.render(

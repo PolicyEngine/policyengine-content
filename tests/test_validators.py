@@ -5,7 +5,7 @@ from pathlib import Path
 from PIL import Image
 import tempfile
 
-from teamverse.renderers.validators import validate_image, ValidationResult
+from policyengine_content.renderers.validators import validate_image, ValidationResult
 
 
 class TestValidateImage:

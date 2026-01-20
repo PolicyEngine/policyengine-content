@@ -9,9 +9,9 @@ import pytest
 from click.testing import CliRunner
 from PIL import Image
 
-from teamverse.cli import main
-from teamverse.models.content import Audience, QuoteBlock, SocialPost
-from teamverse.renderers.validators import ValidationResult
+from policyengine_content.cli import main
+from policyengine_content.models.content import Audience, QuoteBlock, SocialPost
+from policyengine_content.renderers.validators import ValidationResult
 
 
 @pytest.fixture
@@ -91,7 +91,7 @@ class TestSocialCommand:
         output_path = tmp_path / "output.png"
 
         # Mock render_social_image to avoid needing Chrome
-        with patch("teamverse.cli.render_social_image") as mock_render:
+        with patch("policyengine_content.cli.render_social_image") as mock_render:
             mock_render.return_value = output_path
 
             result = runner.invoke(
@@ -113,7 +113,7 @@ class TestSocialCommand:
         """Test social command with CLI arguments only."""
         output_path = tmp_path / "output.png"
 
-        with patch("teamverse.cli.render_social_image") as mock_render:
+        with patch("policyengine_content.cli.render_social_image") as mock_render:
             mock_render.return_value = output_path
 
             result = runner.invoke(
@@ -143,7 +143,7 @@ class TestSocialCommand:
         """Test that CLI arguments override JSON vars."""
         output_path = tmp_path / "output.png"
 
-        with patch("teamverse.cli.render_social_image") as mock_render:
+        with patch("policyengine_content.cli.render_social_image") as mock_render:
             mock_render.return_value = output_path
 
             result = runner.invoke(
@@ -170,7 +170,7 @@ class TestSocialCommand:
         """Test social command with quote block."""
         output_path = tmp_path / "output.png"
 
-        with patch("teamverse.cli.render_social_image") as mock_render:
+        with patch("policyengine_content.cli.render_social_image") as mock_render:
             mock_render.return_value = output_path
 
             result = runner.invoke(
@@ -205,7 +205,7 @@ class TestSocialCommand:
         """Test that social command outputs the generated file path."""
         output_path = tmp_path / "output.png"
 
-        with patch("teamverse.cli.render_social_image") as mock_render:
+        with patch("policyengine_content.cli.render_social_image") as mock_render:
             mock_render.return_value = output_path
 
             result = runner.invoke(
@@ -299,7 +299,7 @@ class TestGenerateCommand:
         """Test generate command with a web URL."""
         output_dir = tmp_path / "output"
 
-        with patch("teamverse.cli.parse_url") as mock_parse:
+        with patch("policyengine_content.cli.parse_url") as mock_parse:
             # Mock the async function
             mock_parse.return_value = {
                 "title": "Test Article",
@@ -325,7 +325,7 @@ class TestGenerateCommand:
         """Test generate command with a Google Docs URL."""
         output_dir = tmp_path / "output"
 
-        with patch("teamverse.cli.parse_google_doc") as mock_parse:
+        with patch("policyengine_content.cli.parse_google_doc") as mock_parse:
             mock_parse.return_value = {
                 "title": "Policy Brief",
                 "content": "This is a policy brief about tax reform.",
@@ -349,7 +349,7 @@ class TestGenerateCommand:
         """Test that generate command creates the output directory if needed."""
         output_dir = tmp_path / "new_dir" / "nested"
 
-        with patch("teamverse.cli.parse_url") as mock_parse:
+        with patch("policyengine_content.cli.parse_url") as mock_parse:
             mock_parse.return_value = {
                 "title": "Test",
                 "content": "Content",
@@ -375,7 +375,7 @@ class TestGenerateCommand:
         """Test generate command with audience option."""
         output_dir = tmp_path / "output"
 
-        with patch("teamverse.cli.parse_url") as mock_parse:
+        with patch("policyengine_content.cli.parse_url") as mock_parse:
             mock_parse.return_value = {
                 "title": "Test",
                 "content": "Content for US audience",
@@ -435,7 +435,7 @@ class TestNewsletterCommand:
         )
         output_path = tmp_path / "newsletter.html"
 
-        with patch("teamverse.cli.render_newsletter") as mock_render:
+        with patch("policyengine_content.cli.render_newsletter") as mock_render:
             mock_render.return_value = output_path
 
             result = runner.invoke(

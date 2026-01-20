@@ -3,7 +3,7 @@
 import re
 from typing import Optional
 
-from teamverse.models.content import Audience
+from policyengine_content.models.content import Audience
 
 
 # UK-specific terms

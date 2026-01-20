@@ -4,7 +4,7 @@ Exposes endpoints for rendering social images, validating images,
 and parsing web content.
 
 Usage:
-    uvicorn teamverse.api:app --reload
+    uvicorn policyengine_content.api:app --reload
 """
 
 import tempfile
@@ -14,10 +14,10 @@ from typing import Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, HttpUrl
 
-from teamverse.models.content import SocialPost, Audience, QuoteBlock
-from teamverse.renderers.social import render_social_image
-from teamverse.renderers.validators import validate_image, ValidationResult
-from teamverse.parsers.web import parse_url
+from policyengine_content.models.content import SocialPost, Audience, QuoteBlock
+from policyengine_content.renderers.social import render_social_image
+from policyengine_content.renderers.validators import validate_image, ValidationResult
+from policyengine_content.parsers.web import parse_url
 
 __version__ = "0.1.0"
 

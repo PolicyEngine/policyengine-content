@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "teamverse"
+name = "policyengine-content"
 version = "0.1.0"
 description = "Content generation for PolicyEngine - social images, newsletters, blog posts"
 readme = "README.md"
@@ -46,11 +46,11 @@ dev = [
 ]
 
 [project.scripts]
-teamverse = "teamverse.cli:main"
+policyengine-content = "policyengine_content.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/PolicyEngine/teamverse-py"
-Repository = "https://github.com/PolicyEngine/teamverse-py"
+Homepage = "https://github.com/PolicyEngine/policyengine-content"
+Repository = "https://github.com/PolicyEngine/policyengine-content"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -65,4 +65,4 @@ target-version = "py310"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-v --cov=teamverse --cov-report=term-missing"
+addopts = "-v --cov=policyengine_content --cov-report=term-missing"

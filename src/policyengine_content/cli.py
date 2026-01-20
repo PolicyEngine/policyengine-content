@@ -1,4 +1,4 @@
-"""Command-line interface for teamverse content generation."""
+"""Command-line interface for policyengine_content content generation."""
 
 import asyncio
 import json
@@ -6,10 +6,10 @@ from pathlib import Path
 
 import click
 
-from teamverse.models.content import Audience, ContentBundle, QuoteBlock, SocialPost, Newsletter
-from teamverse.parsers import parse_google_doc, parse_url
-from teamverse.renderers.social import render_social_image
-from teamverse.renderers.newsletter import render_newsletter
+from policyengine_content.models.content import Audience, ContentBundle, QuoteBlock, SocialPost, Newsletter
+from policyengine_content.parsers import parse_google_doc, parse_url
+from policyengine_content.renderers.social import render_social_image
+from policyengine_content.renderers.newsletter import render_newsletter
 
 
 @click.group()
@@ -128,7 +128,7 @@ def newsletter(vars, output):
 @click.argument("image_path", type=click.Path(exists=True))
 def validate(image_path):
     """Validate a rendered image."""
-    from teamverse.renderers.validators import validate_image
+    from policyengine_content.renderers.validators import validate_image
 
     result = validate_image(Path(image_path))
 
