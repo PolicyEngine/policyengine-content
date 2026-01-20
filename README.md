@@ -1,4 +1,4 @@
-# teamverse-py
+# policyengine-content
 
 Content generation for PolicyEngine - social images, newsletters, blog posts.
 
@@ -13,7 +13,7 @@ Content generation for PolicyEngine - social images, newsletters, blog posts.
 ## Installation
 
 ```bash
-pip install teamverse
+pip install policyengine-content
 ```
 
 Or for development:
@@ -28,23 +28,23 @@ pip install -e ".[dev]"
 
 ```bash
 # Generate social image
-teamverse social --headline "PolicyEngine meets PM" --badge "Major Milestone"
+policyengine-content social --headline "PolicyEngine meets PM" --badge "Major Milestone"
 
 # Validate image dimensions
-teamverse validate image.png
+policyengine-content validate image.png
 
 # Parse content from URL
-teamverse parse-source https://example.com/article
+policyengine-content parse-source https://example.com/article
 
 # Generate content bundle
-teamverse generate --source https://example.com/article
+policyengine-content generate --source https://example.com/article
 ```
 
 ### Python API
 
 ```python
-from teamverse.models.content import SocialPost, Audience
-from teamverse.renderers.social import SocialRenderer
+from policyengine_content.models.content import SocialPost, Audience
+from policyengine_content.renderers.social import SocialRenderer
 
 # Create social post
 post = SocialPost(
@@ -63,7 +63,7 @@ path = renderer.render(post)
 
 ```bash
 # Start server
-uvicorn teamverse.api:app
+uvicorn policyengine_content.api:app
 
 # Health check
 curl http://localhost:8000/health
